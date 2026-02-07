@@ -55,11 +55,11 @@ const Hero = () => {
                     {/* Text Content */}
                     <div className="flex-1 text-center lg:text-left space-y-6">
                         {/* Greeting - Slide in from left */}
-                        <div className="animate-slide-in-left opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+                        {/* <div className="animate-slide-in-left opacity-0" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                             <p className="text-lg sm:text-xl text-primary-600 dark:text-primary-400 font-semibold mb-2">
                                 👋 Welcome to my portfolio
                             </p>
-                        </div>
+                        </div> */}
 
                         {/* Name - Slide in from left */}
                         <div className="animate-slide-in-left opacity-0" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>

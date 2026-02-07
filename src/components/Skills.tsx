@@ -2,94 +2,75 @@ const Skills = () => {
     const skillCategories = [
         {
             title: 'Frontend Technologies',
-            icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-            ),
+            icon: '💻',
             skills: [
-                { name: 'HTML5', level: 95 },
-                { name: 'CSS3', level: 90 },
-                { name: 'JavaScript (ES6+)', level: 90 },
-                { name: 'TypeScript', level: 85 },
-                { name: 'React (Vite)', level: 90 },
-                { name: 'jQuery', level: 75 },
+                { name: 'HTML5', icon: '🌐' },
+                { name: 'CSS3', icon: '🎨' },
+                { name: 'JavaScript', icon: '⚡' },
+                { name: 'TypeScript', icon: '📘' },
+                { name: 'React', icon: '⚛️' },
+                { name: 'jQuery', icon: '💫' },
             ],
-            gradient: 'from-blue-500 to-cyan-500',
+            gradient: 'from-blue-500 via-cyan-500 to-teal-500',
+            bgPattern: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
         },
         {
             title: 'Backend Technologies',
-            icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-                </svg>
-            ),
+            icon: '🔧',
             skills: [
-                { name: 'Node.js', level: 60 },
-                { name: 'Express', level: 60 },
-                { name: 'Prisma ORM', level: 50 },
-                { name: 'MySQL', level: 60 },
+                { name: 'Node.js', icon: '🟢' },
+                { name: 'Express', icon: '🚂' },
+                { name: 'Prisma ORM', icon: '🔷' },
+                { name: 'MySQL', icon: '🐬' },
             ],
-            gradient: 'from-green-500 to-emerald-500',
+            gradient: 'from-green-500 via-emerald-500 to-teal-500',
+            bgPattern: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
         },
         {
             title: 'UI Frameworks & Styling',
-            icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                </svg>
-            ),
+            icon: '🎭',
             skills: [
-                { name: 'Bootstrap', level: 95 },
-                { name: 'Tailwind CSS', level: 90 },
+                { name: 'Bootstrap', icon: '🅱️' },
+                { name: 'Tailwind CSS', icon: '🌊' },
             ],
-            gradient: 'from-purple-500 to-pink-500',
+            gradient: 'from-purple-500 via-pink-500 to-rose-500',
+            bgPattern: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
         },
         {
             title: 'State Management',
-            icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                </svg>
-            ),
+            icon: '🔄',
             skills: [
-                { name: 'Redux', level: 80 },
-                { name: 'React Query', level: 85 },
+                { name: 'Redux', icon: '🔮' },
+                { name: 'React Query', icon: '🔍' },
             ],
-            gradient: 'from-orange-500 to-red-500',
+            gradient: 'from-orange-500 via-red-500 to-pink-500',
+            bgPattern: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20',
         },
         {
             title: 'Real-Time & Communication',
-            icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-            ),
+            icon: '⚡',
             skills: [
-                { name: 'MQTT', level: 75 },
-                { name: 'WebSocket', level: 75 },
-                { name: 'Maps & Location Services', level: 80 },
-                { name: 'Google Maps API', level: 85 },
+                { name: 'MQTT', icon: '📡' },
+                { name: 'WebSocket', icon: '🔌' },
+                { name: 'Google Maps API', icon: '🗺️' },
             ],
-            gradient: 'from-yellow-500 to-orange-500',
+            gradient: 'from-yellow-500 via-amber-500 to-orange-500',
+            bgPattern: 'from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20',
         },
         {
             title: 'Version Control & Tools',
-            icon: (
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-            ),
+            icon: '�️',
             skills: [
-                { name: 'Git', level: 85 },
-                { name: 'ClickUp', level: 80 },
+                { name: 'Git', icon: '📦' },
+                { name: 'ClickUp', icon: '✅' },
             ],
-            gradient: 'from-indigo-500 to-purple-500',
+            gradient: 'from-indigo-500 via-purple-500 to-pink-500',
+            bgPattern: 'from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20',
         },
     ];
 
     return (
-        <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50/50 dark:bg-gray-800/50">
+        <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
             <div className="container mx-auto">
                 <div className="text-center mb-16 animate-fade-in">
                     <h2 className="text-4xl sm:text-5xl font-bold mb-4">
@@ -97,79 +78,92 @@ const Skills = () => {
                     </h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-primary-600 to-accent-600 mx-auto rounded-full"></div>
                     <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        A comprehensive overview of my technical skills and expertise across various technologies and frameworks.
+                        A comprehensive showcase of my technical expertise across various technologies and frameworks.
                     </p>
                 </div>
 
+                {/* Skills Categories Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                     {skillCategories.map((category, index) => (
                         <div
                             key={index}
-                            className="glass rounded-2xl p-6 hover:glow-effect transition-all duration-300 hover:scale-105 animate-slide-up"
+                            className="group relative glass rounded-3xl overflow-hidden hover:glow-effect transition-all duration-500 hover:scale-105 hover:-translate-y-2 animate-slide-up"
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
-                            {/* Category Header */}
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className={`p-3 bg-gradient-to-r ${category.gradient} rounded-lg text-white`}>
-                                    {category.icon}
+                            {/* Gradient Background Pattern */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${category.bgPattern} opacity-50 group-hover:opacity-70 transition-opacity duration-300`}></div>
+                            
+                            {/* Animated Border */}
+                            <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
+                            
+                            <div className="relative p-8">
+                                {/* Category Header */}
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className={`p-4 bg-gradient-to-r ${category.gradient} rounded-2xl text-white shadow-xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+                                        <span className="text-4xl filter drop-shadow-lg">{category.icon}</span>
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 transition-all duration-300">
+                                        {category.title}
+                                    </h3>
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                                    {category.title}
-                                </h3>
-                            </div>
 
-                            {/* Skills List */}
-                            <div className="space-y-4">
-                                {category.skills.map((skill, idx) => (
-                                    <div key={idx}>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                {/* Skills Grid */}
+                                <div className="grid grid-cols-2 gap-3">
+                                    {category.skills.map((skill, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="flex items-center gap-3 p-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-lg group/skill"
+                                            style={{ animationDelay: `${(index * 0.1) + (idx * 0.05)}s` }}
+                                        >
+                                            <span className="text-2xl transform group-hover/skill:scale-125 group-hover/skill:rotate-12 transition-all duration-300">
+                                                {skill.icon}
+                                            </span>
+                                            <span className="text-sm font-semibold text-gray-800 dark:text-gray-200 group-hover/skill:text-transparent group-hover/skill:bg-clip-text group-hover/skill:bg-gradient-to-r group-hover/skill:from-primary-600 group-hover/skill:to-accent-600 transition-all duration-300">
                                                 {skill.name}
                                             </span>
-                                            <span className="text-sm font-semibold text-primary-600 dark:text-primary-400">
-                                                {skill.level}%
-                                            </span>
                                         </div>
-                                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-                                            <div
-                                                className={`h-full bg-gradient-to-r ${category.gradient} rounded-full transition-all duration-1000 ease-out`}
-                                                style={{ width: `${skill.level}%` }}
-                                            ></div>
-                                        </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+
+                                {/* Decorative Bottom Border */}
+                                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${category.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
                             </div>
                         </div>
                     ))}
                 </div>
 
                 {/* Languages Section */}
-                <div className="mt-16 max-w-4xl mx-auto">
-                    <div className="glass rounded-2xl p-8 hover:glow-effect transition-all">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                            Languages
-                        </h3>
+                <div className="mt-16 max-w-5xl mx-auto">
+                    <div className="glass rounded-3xl p-8 hover:glow-effect transition-all duration-300 hover:scale-105">
+                        <div className="flex items-center justify-center gap-3 mb-8">
+                            <span className="text-4xl">🌍</span>
+                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
+                                Languages
+                            </h3>
+                        </div>
                         <div className="grid sm:grid-cols-2 gap-6">
-                            <div className="flex items-center gap-4">
-                                <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg text-white">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold text-gray-900 dark:text-white">Tamil</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">Native</p>
+                            <div className="group/lang relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover/lang:opacity-10 transition-opacity duration-300"></div>
+                                <div className="relative flex items-center gap-4">
+                                    <div className="p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl text-white shadow-lg transform group-hover/lang:scale-110 group-hover/lang:rotate-6 transition-all duration-300">
+                                        <span className="text-5xl">🇮🇳</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-gray-900 dark:text-white text-2xl mb-1">Tamil</h4>
+                                        <p className="text-gray-600 dark:text-gray-400 font-medium">Native Speaker</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-4">
-                                <div className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold text-gray-900 dark:text-white">English</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400">Fluent</p>
+                            <div className="group/lang relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover/lang:opacity-10 transition-opacity duration-300"></div>
+                                <div className="relative flex items-center gap-4">
+                                    <div className="p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl text-white shadow-lg transform group-hover/lang:scale-110 group-hover/lang:rotate-6 transition-all duration-300">
+                                        <span className="text-5xl">🇬🇧</span>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-gray-900 dark:text-white text-2xl mb-1">English</h4>
+                                        <p className="text-gray-600 dark:text-gray-400 font-medium">Fluent</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

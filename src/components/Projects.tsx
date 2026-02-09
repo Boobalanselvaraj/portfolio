@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 
 const Projects = () => {
+    const [activeFilter, setActiveFilter] = useState('All');
+    const [filteredProjects, setFilteredProjects] = useState<any[]>([]);
+    const [visibleProjects, setVisibleProjects] = useState<Set<number>>(new Set());
+    const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+
     const projects = [
         {
             title: 'iChlorine',
@@ -101,6 +107,45 @@ const Projects = () => {
         },
     ];
 
+    // Filter projects based on active filter
+    useEffect(() => {
+        if (activeFilter === 'All') {
+            setFilteredProjects(projects);
+        } else {
+            setFilteredProjects(projects.filter(p => p.category === activeFilter));
+        }
+    }, [activeFilter]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const index = parseInt(entry.target.getAttribute('data-index') || '0');
+                    if (entry.isIntersecting) {
+                        setVisibleProjects(prev => new Set(prev).add(index));
+                    }
+                });
+            },
+             {
+                 threshold: 0.1,
+                 rootMargin: '0px 0px -100px 0px'
+             }
+        );
+
+        projectRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => observer.disconnect();
+    }, [filteredProjects]);
+
+    const handleFilterClick = (filter: string) => {
+        setActiveFilter(filter);
+        setVisibleProjects(new Set()); // Reset animations when filter changes
+    };
+   
+
+
     return (
         <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
             <div className="container mx-auto">
@@ -116,96 +161,122 @@ const Projects = () => {
 
                 {/* Category Filters */}
                 <div className="flex justify-center gap-4 mb-12 flex-wrap">
-                    <span className="px-6 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold shadow-lg">
+                    <button 
+                        onClick={() => handleFilterClick('All')}
+                        className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${
+                            activeFilter === 'All' 
+                                ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white' 
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-xl'
+                        }`}
+                    >
                         All Projects
-                    </span>
-                    <span className="px-6 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-semibold shadow hover:shadow-lg transition-shadow cursor-pointer">
+                    </button>
+                    <button 
+                        onClick={() => handleFilterClick('Frontend')}
+                        className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${
+                            activeFilter === 'Frontend' 
+                                ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white' 
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-xl'
+                        }`}
+                    >
                         Frontend
-                    </span>
-                    <span className="px-6 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-semibold shadow hover:shadow-lg transition-shadow cursor-pointer">
+                    </button>
+                    <button 
+                        onClick={() => handleFilterClick('Backend')}
+                        className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${
+                            activeFilter === 'Backend' 
+                                ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white' 
+                                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-xl'
+                        }`}
+                    >
                         Backend
-                    </span>
+                    </button>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                    {projects.map((project, index) => (
-                        <div
-                            key={index}
-                            className="group glass rounded-2xl overflow-hidden hover:glow-effect transition-all duration-500 hover:scale-105 hover:-translate-y-3 animate-slide-up"
-                            style={{ 
-                                animationDelay: `${index * 0.1}s`,
-                                transformStyle: 'preserve-3d',
-                            }}
-                        >
-                            {/* Project Header with Icon */}
-                            <div className={`relative h-32 bg-gradient-to-r ${project.gradient} flex items-center justify-center overflow-hidden`}>
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
-                                <div className="text-7xl transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 filter drop-shadow-2xl z-10">
-                                    {project.icon}
-                                </div>
-                                {/* Animated background pattern */}
-                                <div className="absolute inset-0 opacity-20">
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent transform group-hover:scale-110 transition-transform duration-700"></div>
-                                </div>
-                                {/* Category Badge */}
-                                <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 dark:bg-gray-900/90 rounded-full text-xs font-bold text-gray-800 dark:text-white backdrop-blur-sm">
-                                    {project.category}
-                                </div>
-                            </div>
-
-                            <div className="p-6">
-                                {/* Title */}
-                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 transition-all duration-300">
-                                    {project.title}
-                                </h3>
-
-                                {/* Description */}
-                                <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                                    {project.description}
-                                </p>
-
-                                {/* Features */}
-                                <div className="mb-4">
-                                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Key Features:</h4>
-                                    <ul className="space-y-1.5">
-                                        {project.features.map((feature, idx) => (
-                                            <li 
-                                                key={idx} 
-                                                className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300 transform transition-all duration-300 hover:translate-x-1"
-                                                style={{ animationDelay: `${(index * 0.1) + (idx * 0.05)}s` }}
-                                            >
-                                                <svg className="w-4 h-4 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                </svg>
-                                                <span>{feature}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                {/* Technologies */}
-                                <div>
-                                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Technologies:</h4>
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.technologies.map((tech, idx) => (
-                                            <span
-                                                key={idx}
-                                                className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium hover:bg-gradient-to-r hover:from-primary-500 hover:to-accent-500 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 cursor-default"
-                                                style={{ 
-                                                    animationDelay: `${(index * 0.1) + (idx * 0.03)}s`,
-                                                }}
-                                            >
-                                                {tech}
-                                            </span>
-                                        ))}
+                    {filteredProjects.map((project, index) => {
+                        const isVisible = visibleProjects.has(index);
+                        return (
+                            <div
+                                key={index}
+                                ref={(el) => { projectRefs.current[index] = el; }}
+                                data-index={index}
+                                className={`group glass rounded-2xl overflow-hidden hover:glow-effect transition-all duration-700 hover:scale-105 hover:-translate-y-3`}
+                                style={{ 
+                                    transformStyle: 'preserve-3d',
+                                    transitionDelay: `${index * 0.1}s`
+                                }}
+                            >
+                                {/* Project Header with Icon */}
+                                <div className={`relative h-32 bg-gradient-to-r ${project.gradient} flex items-center justify-center overflow-hidden`}>
+                                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300"></div>
+                                    <div className="text-7xl transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 filter drop-shadow-2xl z-10">
+                                        {project.icon}
+                                    </div>
+                                    {/* Animated background pattern */}
+                                    <div className="absolute inset-0 opacity-20">
+                                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent transform group-hover:scale-110 transition-transform duration-700"></div>
+                                    </div>
+                                    {/* Category Badge */}
+                                    <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 dark:bg-gray-900/90 rounded-full text-xs font-bold text-gray-800 dark:text-white backdrop-blur-sm">
+                                        {project.category}
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Hover Effect Border */}
-                            <div className={`h-1 bg-gradient-to-r ${project.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
-                        </div>
-                    ))}
+                                <div className="p-6">
+                                    {/* Title */}
+                                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 transition-all duration-300">
+                                        {project.title}
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                                        {project.description}
+                                    </p>
+
+                                    {/* Features */}
+                                    <div className="mb-4">
+                                        <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Key Features:</h4>
+                                        <ul className="space-y-1.5">
+                                            {project.features.map((feature: string, idx: number) => (
+                                                <li 
+                                                    key={idx} 
+                                                    className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300 transform transition-all duration-300 hover:translate-x-1"
+                                                    style={{ animationDelay: `${(index * 0.1) + (idx * 0.05)}s` }}
+                                                >
+                                                    <svg className="w-4 h-4 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                    <span>{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Technologies */}
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-sm">Technologies:</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.technologies.map((tech: string, idx: number) => (
+                                                <span
+                                                    key={idx}
+                                                    className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-xs font-medium hover:bg-gradient-to-r hover:from-primary-500 hover:to-accent-500 hover:text-white transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 cursor-default"
+                                                    style={{ 
+                                                        animationDelay: `${(index * 0.1) + (idx * 0.03)}s`,
+                                                    }}
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Hover Effect Border */}
+                                <div className={`h-1 bg-gradient-to-r ${project.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
+                            </div>
+                        );
+                    })}
                 </div>
 
                 {/* Bottom CTA */}
@@ -233,6 +304,87 @@ const Projects = () => {
                 
                 .group:hover .text-7xl {
                     animation: float 2s ease-in-out infinite;
+                }
+
+                @keyframes slideInLeft {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-100px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                @keyframes slideInRight {
+                    from {
+                        opacity: 0;
+                        transform: translateX(100px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                @keyframes fadeInScale {
+                    from {
+                        opacity: 0;
+                        transform: scale(0.8);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+
+                @keyframes rotateIn {
+                    from {
+                        opacity: 0;
+                        transform: rotate(-10deg) scale(0.9);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: rotate(0) scale(1);
+                    }
+                }
+
+                @keyframes bounceIn {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(50px);
+                    }
+                    60% {
+                        opacity: 1;
+                        transform: translateY(-10px);
+                    }
+                    80% {
+                        transform: translateY(5px);
+                    }
+                    100% {
+                        transform: translateY(0);
+                    }
+                }
+
+                .animate-slide-in-left {
+                    animation: slideInLeft 0.8s ease-out forwards;
+                }
+
+                .animate-slide-in-right {
+                    animation: slideInRight 0.8s ease-out forwards;
+                }
+
+                .animate-fade-in-scale {
+                    animation: fadeInScale 0.8s ease-out forwards;
+                }
+
+                .animate-rotate-in {
+                    animation: rotateIn 0.8s ease-out forwards;
+                }
+
+                .animate-bounce-in {
+                    animation: bounceIn 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
                 }
             `}</style>
         </section>

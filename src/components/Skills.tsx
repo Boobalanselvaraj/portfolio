@@ -1,71 +1,106 @@
 const Skills = () => {
     const skillCategories = [
         {
-            title: 'Frontend Technologies',
+            title: 'Frontend',
             icon: '💻',
             skills: [
-                { name: 'HTML5', icon: '🌐' },
-                { name: 'CSS3', icon: '🎨' },
                 { name: 'JavaScript', icon: '⚡' },
                 { name: 'TypeScript', icon: '📘' },
-                { name: 'React', icon: '⚛️' },
+                { name: 'React.js', icon: '⚛️' },
                 { name: 'jQuery', icon: '💫' },
+                { name: 'HTML5', icon: '🌐' },
+                { name: 'CSS3', icon: '🎨' },
+                { name: 'Tailwind CSS', icon: '🌊' },
+                { name: 'Bootstrap', icon: '🅱️' },
+                { name: 'Vite', icon: '⚡' },
+                { name: 'Responsive Web Design', icon: '📱' },
             ],
             gradient: 'from-blue-500 via-cyan-500 to-teal-500',
             bgPattern: 'from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20',
         },
         {
-            title: 'Backend Technologies',
+            title: 'Backend',
             icon: '🔧',
             skills: [
                 { name: 'Node.js', icon: '🟢' },
-                { name: 'Express', icon: '🚂' },
-                { name: 'Prisma ORM', icon: '🔷' },
-                { name: 'MySQL', icon: '🐬' },
+                { name: 'Express.js', icon: '🚂' },
+                { name: 'REST APIs', icon: '🔗' },
+                { name: 'JWT Authentication', icon: '🔐' },
+                { name: 'RBAC', icon: '🛡️' },
+                { name: 'Auth & Authorization', icon: '🔑' },
             ],
             gradient: 'from-green-500 via-emerald-500 to-teal-500',
             bgPattern: 'from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20',
         },
         {
-            title: 'UI Frameworks & Styling',
-            icon: '🎭',
+            title: 'Databases & ORM',
+            icon: '🗄️',
             skills: [
-                { name: 'Bootstrap', icon: '🅱️' },
-                { name: 'Tailwind CSS', icon: '🌊' },
+                { name: 'MySQL', icon: '🐬' },
+                { name: 'Prisma ORM', icon: '🔷' },
             ],
             gradient: 'from-purple-500 via-pink-500 to-rose-500',
             bgPattern: 'from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20',
         },
         {
-            title: 'State Management',
+            title: 'State & Data Handling',
             icon: '🔄',
             skills: [
-                { name: 'Redux', icon: '🔮' },
+                { name: 'Redux Toolkit', icon: '🔮' },
                 { name: 'React Query', icon: '🔍' },
+                { name: 'TanStack Table', icon: '📊' },
             ],
             gradient: 'from-orange-500 via-red-500 to-pink-500',
             bgPattern: 'from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20',
         },
         {
-            title: 'Real-Time & Communication',
-            icon: '⚡',
+            title: 'Maps, Geospatial & Real-Time',
+            icon: '🛰️',
             skills: [
+                { name: 'Deck.gl', icon: '🗺️' },
+                { name: 'Google Maps API', icon: '📍' },
+                { name: 'GeoJSON', icon: '🌍' },
                 { name: 'MQTT', icon: '📡' },
                 { name: 'WebSocket', icon: '🔌' },
-                { name: 'Google Maps API', icon: '🗺️' },
             ],
             gradient: 'from-yellow-500 via-amber-500 to-orange-500',
             bgPattern: 'from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20',
         },
         {
-            title: 'Version Control & Tools',
-            icon: '�️',
+            title: 'DevOps & Deployment',
+            icon: '🚀',
+            skills: [
+                { name: 'Docker', icon: '🐳' },
+                { name: 'Nginx', icon: '🌐' },
+                { name: 'Continuous Integration', icon: '🔁' },
+            ],
+            gradient: 'from-cyan-500 via-sky-500 to-blue-500',
+            bgPattern: 'from-cyan-50 to-sky-50 dark:from-cyan-900/20 dark:to-sky-900/20',
+        },
+        {
+            title: 'Tools & Platforms',
+            icon: '🛠️',
             skills: [
                 { name: 'Git', icon: '📦' },
+                { name: 'GitHub', icon: '🐙' },
+                { name: 'VS Code', icon: '🧩' },
+                { name: 'Postman', icon: '📮' },
                 { name: 'ClickUp', icon: '✅' },
+                { name: 'Antigravity', icon: '🪐' },
             ],
             gradient: 'from-indigo-500 via-purple-500 to-pink-500',
             bgPattern: 'from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20',
+        },
+        {
+            title: 'Architecture',
+            icon: '🏗️',
+            skills: [
+                { name: 'Component-Based Architecture', icon: '🧱' },
+                { name: 'Scalable Frontend Systems', icon: '📈' },
+                { name: 'Multi-Tenant Systems', icon: '🏢' },
+            ],
+            gradient: 'from-rose-500 via-fuchsia-500 to-purple-500',
+            bgPattern: 'from-rose-50 to-fuchsia-50 dark:from-rose-900/20 dark:to-fuchsia-900/20',
         },
     ];
 
@@ -92,10 +127,10 @@ const Skills = () => {
                         >
                             {/* Gradient Background Pattern */}
                             <div className={`absolute inset-0 bg-gradient-to-br ${category.bgPattern} opacity-50 group-hover:opacity-70 transition-opacity duration-300`}></div>
-                            
+
                             {/* Animated Border */}
                             <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
-                            
+
                             <div className="relative p-8">
                                 {/* Category Header */}
                                 <div className="flex items-center gap-4 mb-6">

@@ -1,4 +1,8 @@
+import { calculateExperience } from '../utils/experience';
+
 const About = () => {
+    const expText = calculateExperience();
+
     return (
         <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
             <div className="container mx-auto">
@@ -13,8 +17,8 @@ const About = () => {
                     {/* Left Column - Info */}
                     <div className="space-y-6 animate-slide-up">
                         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                            I'm a passionate <span className="font-semibold text-primary-600 dark:text-primary-400">Software Developer</span> with
-                            1.5+ years of experience in building responsive and scalable web applications. I specialize in creating
+                            I'm a passionate <span className="font-semibold text-primary-600 dark:text-primary-400">Software Developer</span> with{' '}
+                            {expText} years of experience in building responsive and scalable web applications. I specialize in creating
                             clean, performant, and user-friendly interfaces using modern web technologies.
                         </p>
                         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
@@ -31,7 +35,7 @@ const About = () => {
                         {/* Quick Stats */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8">
                             <div className="glass p-6 rounded-xl text-center hover:glow-effect transition-all">
-                                <div className="text-3xl font-bold text-gradient mb-2">1.5+</div>
+                                <div className="text-3xl font-bold text-gradient mb-2">{expText}</div>
                                 <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
                             </div>
                             <div className="glass p-6 rounded-xl text-center hover:glow-effect transition-all">

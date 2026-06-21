@@ -15,7 +15,7 @@ const Projects = () => {
     technologies: string[];
     gradient: string;
     icon: string;
-    category: "Frontend" | "Backend";
+    category: "Frontend" | "Backend" | "Full-stack";
   };
   const projects: Project[] = [
     {
@@ -134,6 +134,36 @@ const Projects = () => {
       icon: "📝",
       category: "Backend",
     },
+    {
+      title: "Nexus Shop - Full Stack eCommerce Platform",
+      description:
+        "A modern full-stack eCommerce application with PWA support, secure authentication, online payments, and cloud-based image management.",
+      features: [
+        "Developed a complete eCommerce platform with user authentication and OTP-based login system",
+        "Integrated Stripe payment gateway for secure online transactions",
+        "Implemented Progressive Web App (PWA) features for installable and offline-capable experience",
+        "Integrated Cloudinary for image upload, optimization, and management",
+        "Deployed frontend on Vercel and backend on Render with MySQL database hosted on Aiven",
+      ],
+      technologies: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Node.js",
+        "Express.js",
+        "MySQL",
+        "Stripe",
+        "Cloudinary",
+        "PWA",
+        "Aiven",
+        "Render",
+        "Vercel",
+      ],
+      gradient: "from-emerald-500 to-teal-600",
+      icon: "🛒",
+      category: "Full-stack",
+    },
+
   ];
 
   // Filter projects based on active filter
@@ -197,33 +227,39 @@ const Projects = () => {
         <div className="flex justify-center gap-4 mb-12 flex-wrap">
           <button
             onClick={() => handleFilterClick("All")}
-            className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${
-              activeFilter === "All"
+            className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${activeFilter === "All"
                 ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white"
                 : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-xl"
-            }`}
+              }`}
           >
             All Projects
           </button>
           <button
             onClick={() => handleFilterClick("Frontend")}
-            className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${
-              activeFilter === "Frontend"
+            className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${activeFilter === "Frontend"
                 ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
                 : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-xl"
-            }`}
+              }`}
           >
             Frontend
           </button>
           <button
             onClick={() => handleFilterClick("Backend")}
-            className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${
-              activeFilter === "Backend"
+            className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${activeFilter === "Backend"
                 ? "bg-gradient-to-r from-orange-500 to-red-500 text-white"
                 : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-xl"
-            }`}
+              }`}
           >
             Backend
+          </button>
+          <button
+            onClick={() => handleFilterClick("Full-stack")}
+            className={`px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${activeFilter === "full-stack"
+                ? "bg-gradient-to-r from-green-500 to-teal-500 text-white"
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:shadow-xl"
+              }`}
+          >
+            Fullstack
           </button>
         </div>
 
@@ -237,9 +273,8 @@ const Projects = () => {
                   projectRefs.current[index] = el;
                 }}
                 data-index={index}
-                className={`group glass rounded-2xl overflow-hidden hover:glow-effect transition-all duration-700 hover:scale-105 hover:-translate-y-3 ${
-                  isVisible ? "animate-fade-in-scale" : "opacity-0"
-                }`}
+                className={`group glass rounded-2xl overflow-hidden hover:glow-effect transition-all duration-700 hover:scale-105 hover:-translate-y-3 ${isVisible ? "animate-fade-in-scale" : "opacity-0"
+                  }`}
                 style={{
                   transformStyle: "preserve-3d",
                   animationDelay: `${index * 0.1}s`,

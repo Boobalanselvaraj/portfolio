@@ -17,19 +17,17 @@ const About = () => {
                     {/* Left Column - Info */}
                     <div className="space-y-6 animate-slide-up">
                         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                            I'm a passionate <span className="font-semibold text-primary-600 dark:text-primary-400">Software Developer</span> with{' '}
-                            {expText} years of experience in building responsive and scalable web applications. I specialize in creating
-                            clean, performant, and user-friendly interfaces using modern web technologies.
+                            I'm a passionate <span className="font-semibold text-cyan-600 dark:text-cyan-400">Full Stack Developer</span> with{' '}
+                            {expText} years of professional engineering experience. Currently building enterprise healthcare web applications at{' '}
+                            <span className="font-semibold text-cyan-600 dark:text-cyan-400">S10 Health</span> in Chennai (Oct 2026 – Present).
                         </p>
                         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                            Currently working at <span className="font-semibold text-accent-600 dark:text-accent-400">Realtech GPS PVT LTD</span> in
-                            Perundurai, Erode, where I develop and maintain applications using React and vanilla JavaScript, focusing on
-                            performance, usability, and clean UI design.
+                            Prior to joining S10 Health, I worked for 2.5 years at{' '}
+                            <span className="font-semibold text-blue-600 dark:text-blue-400">Realtech GPS PVT LTD</span> (May 2024 – Sep 2026),
+                            engineering smart IoT platforms (iChlorine and iTank) with React, TanStack Table, Google Maps APIs, and live MQTT protocols.
                         </p>
                         <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                            I have a strong foundation in <span className="font-semibold">frontend development</span> with expertise in React,
-                            TypeScript, and modern CSS frameworks. I also have knowledge of backend technologies including Node.js, Express,
-                            Prisma, and MySQL, making me capable of full-stack development.
+                            I specialize in end-to-end full-stack development with <span className="font-semibold">React, TypeScript, Node.js, Express, and MySQL</span>, delivering scalable, highly available web platforms and intuitive user experiences.
                         </p>
 
                         {/* Quick Stats */}

@@ -2,16 +2,26 @@ import { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { CommandPalette } from './components/CommandPalette';
+import { ToastProvider } from './context/ToastContext';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [darkMode]);
 
@@ -21,17 +31,32 @@ function App() {
   }, [pathname]);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+    setDarkMode((prev) => !prev);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300 flex flex-col">
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <main className="flex-grow pt-20">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+    <ToastProvider>
+      <div className="min-h-screen bg-slate-50 dark:bg-gray-950 text-slate-900 dark:text-gray-100 transition-colors duration-300 flex flex-col relative selection:bg-cyan-500 selection:text-white">
+        <Header
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+          openCommandPalette={() => setIsCommandPaletteOpen(true)}
+        />
+
+        <main className="flex-grow pt-20">
+          <Outlet />
+        </main>
+
+        <Footer />
+
+        <CommandPalette
+          isOpen={isCommandPaletteOpen}
+          onClose={() => setIsCommandPaletteOpen(false)}
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+        />
+      </div>
+    </ToastProvider>
   );
 }
 

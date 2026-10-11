@@ -19,9 +19,10 @@ const Footer = () => {
                 <div className="grid md:grid-cols-3 gap-8 mb-8">
                     {/* Brand */}
                     <div>
-                        <h3 className="text-2xl font-bold text-gradient mb-4">Boobalan Selvaraj</h3>
-                        <p className="text-gray-400 mb-4">
-                            Software Developer passionate about creating beautiful and functional web applications.
+                        <h3 className="text-2xl font-bold text-gradient mb-2">Boobalan Selvaraj</h3>
+                        <p className="text-xs font-semibold text-cyan-400 mb-2">Full Stack Developer @ S10 Health • Oct 2026 – Present</p>
+                        <p className="text-gray-400 mb-4 text-sm">
+                            Full Stack Developer based in Chennai, engineering high-performance healthcare platforms, robust APIs, and modern reactive interfaces.
                         </p>
                         <div className="flex gap-4">
                             <a
